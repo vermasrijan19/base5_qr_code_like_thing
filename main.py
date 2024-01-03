@@ -33,4 +33,4 @@ for x in text:
         width_counter += 1
 image = np.array(image, dtype=np.uint8)
 print(image)
-cv2.imwrite("image1.png", image)  # cv2.waitKey(0)
+cv2.imwrite("EncodingOutput.png", image)  # cv2.waitKey(0)
