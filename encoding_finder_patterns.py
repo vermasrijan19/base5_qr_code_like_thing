@@ -14,7 +14,7 @@ def drawFinderPatterns(img, irng,jrng):
                     (i >= 1 and (j == 1 or j == 5) or (j >= 1 and (i == 1 or i == 5)))):
                 i = i + irng[0]
                 j=j+jrng[0]
-                img[i][j] = [255, 255, 255]
+                img[i][j] = [0, 0, 0]
             else:
                 i = i + irng[0]
                 j=j+jrng[0]
@@ -40,9 +40,9 @@ for x in text:
     while ((width_counter < 8 and height_counter < 8) or (width_counter > width - 9 and height_counter < 8) or
            (width_counter < 8 and height_counter > height - 9)):
         if(width_counter==7 or width_counter==width-8 or height_counter==7 or height_counter==height-8):
-            image[height_counter][width_counter] = [255, 255, 255]
-        else:
             image[height_counter][width_counter] = [0, 0, 0]
+        else:
+            image[height_counter][width_counter] = [255, 255, 255]
         if width_counter == width - 1:
             width_counter = 0
             height_counter += 1
@@ -74,7 +74,7 @@ drawFinderPatterns(image, range(0, 6),range(0, 6))
 drawFinderPatterns(image, range(height-7, height),range(0, 6))
 drawFinderPatterns(image, range(0,6),range(width-7, width))
 
-image=cv2.copyMakeBorder(image, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=[255, 255,255])
+image=cv2.copyMakeBorder(image, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=[0, 0,0])
 
 image = np.array(image, dtype=np.uint8)
 print(image)

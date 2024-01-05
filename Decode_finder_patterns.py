@@ -58,6 +58,12 @@ for c in cnts:
         # cv2.imwrite('ROI.png', ROI)
         cropped = ROI
 
+# cropped[:,:,0]=255
+hsv=cv2.cvtColor(cropped,cv2.COLOR_BGR2HSV)
+
+hsv[:,:,2]=np.where(hsv[:,:,2]>128,255,0)
+# hsv[:,:,1]=np.where(hsv[:,:,1]>128,255,0)
+cropped=cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
 
 #
 # div = 4
