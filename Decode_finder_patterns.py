@@ -27,7 +27,7 @@ def quantize_color(image, target_colors):
     return quantized_image
 
 
-image = cv2.imread("plswork.jpg")
+image = cv2.imread("yellow.jpg")
 
 aspectRatio = image.shape[1] / float(image.shape[0])
 # area=image.shape[1]*image.shape[0]
@@ -36,14 +36,14 @@ height = int(np.sqrt(409600 / aspectRatio))
 width = int(aspectRatio * height)
 image = cv2.resize(image, (width, height))
 
-# kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
-# image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=2)
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=2)
 img = cv2.Canny(image, 100, 200)
 
 # cropped=image
-
 cnts = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 # cv2.drawContours(image, cnts[0], -1, (0,255,0), 3)
+
 cnts = cnts[0] if len(cnts) == 2 else cnts[1]
 for c in cnts:
     peri = cv2.arcLength(c, True)
@@ -52,10 +52,14 @@ for c in cnts:
     area = cv2.contourArea(c)
     ar = w / float(h)
     if len(approx) == 4 and area > 1000 and (ar > .85 and ar < 1.3):
-        # cv2.rectangle(image, (x, y), (x + w, y + h), (36, 255, 12), 3)
+
+        cv2.rectangle(image, (x, y), (x + w, y + h), (36, 255, 12), 3)
         ROI = image[y:y + h, x:x + w]
+        cv2.imshow("image", ROI)
+        cv2.waitKey(0)
         ROI = cv2.resize(ROI, (54, 54))
         # cv2.imwrite('ROI.png', ROI)
+        print("ROI")
         cropped = ROI
 
 # cropped[:,:,0]=255
