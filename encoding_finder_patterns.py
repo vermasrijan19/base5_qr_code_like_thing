@@ -10,8 +10,8 @@ def drawFinderPatterns(img, irng,jrng):
         for j in jrng:
             i = i - irng[0]
             j=j-jrng[0]
-            if (1 <= i <= 5 and 1 <= j <= 5) and (
-                    (i >= 1 and (j == 1 or j == 5) or (j >= 1 and (i == 1 or i == 5)))):
+            if (0 <= i <= 4 and 0 <= j <= 4) and (
+                    (i >= 0 and (j == 0 or j == 4) or (j >= 0 and (i == 0 or i == 4)))):
                 i = i + irng[0]
                 j=j+jrng[0]
                 img[i][j] = [255, 255, 255]
@@ -44,10 +44,10 @@ image = np.zeros([height, width, 3], dtype=np.uint8)
 width_counter = 0
 height_counter = 0
 for x in text:
-    while ((width_counter < 8 and height_counter < 8) or (width_counter > width - 9 and height_counter < 8) or
-           (width_counter < 8 and height_counter > height - 9)):
-        if(width_counter==7 or width_counter==width-8 or height_counter==7 or height_counter==height-8):
-            image[height_counter][width_counter] = [255, 255, 255]
+    while ((width_counter < 6 and height_counter < 6) or (width_counter > width - 7 and height_counter < 6) or
+           (width_counter < 6 and height_counter > height - 7)):
+        if(width_counter==6 or width_counter==width-7 or height_counter==6 or height_counter==height-7):
+            image[height_counter][width_counter] = [0, 0, 0]
         else:
             image[height_counter][width_counter] = [0, 0, 0]
         if width_counter == width - 1:
@@ -78,10 +78,10 @@ for x in text:
 #             image[i][j] = [255, 255, 255]
 
 drawFinderPatterns(image, range(0, 6),range(0, 6))
-drawFinderPatterns(image, range(height-7, height),range(0, 6))
-drawFinderPatterns(image, range(0,6),range(width-7, width))
+drawFinderPatterns(image, range(0,6),range(width-5, width))
+drawFinderPatterns(image, range(height-5, height),range(0, 6))
 
-image=cv2.copyMakeBorder(image, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=[255, 255,255])
+# image=cv2.copyMakeBorder(image, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=[255, 255,255])
 image=cv2.copyMakeBorder(image, 100, 100 ,100, 100, cv2.BORDER_CONSTANT, value=[0, 0,0])
 
 image = np.array(image, dtype=np.uint8)
