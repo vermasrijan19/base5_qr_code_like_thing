@@ -1,14 +1,7 @@
 import cv2
 import numpy as np
 
-text = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis laoreet nulla, volutpat blandit "
-        "mauris dictum quis. Vestibulum eget feugiat mi, sed ultrices nunc. Nullam turpis est, luctus at magna id, "
-        "ullamcorper fringilla felis. Orci varius natoque penatibus et magnis dis parturient montes, "
-        "nascetur ridiculus mus. Vestibulum convallis dapibus lacus, quis lobortis quam consectetur vel. Aenean "
-        "convallis vitae metus vitae commodo. Praesent id mattis diam. Quisque non neque metus. Vivamus ligula massa, "
-        "convallis sagittis nibh non, malesuada posuere dolor. Proin auctor auctor justo et sagittis. Aliquam vel "
-        "varius turpis. Etiam dapibus, urna in vulputate iaculis, urna risus accumsan dolor, quis consectetur lacus "
-        "diam ut ligula. Integer et maximus lectus. Donec id est sed justo laoreet varius et eget sem.")
+text = ("22130140334030004123")
 decimal_text = np.array([ord(c) for c in text])
 print(decimal_text)
 base5_text = []
